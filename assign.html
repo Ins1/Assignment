@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+<title>Login Authenticator </title>
+<link href= 'https://fonts.googleapis.com/css?family=Raleway:500' rel= 'stylesheet' type="text/css">
+ 
+</head>
+
+<style type="text/css">
+body {
+background:#F8FDD3;
+font-family:Raleway;
+}
+
+.success{
+color:green;
+}
+.success::before{
+content:'✔ ';
+}
+li{
+list-style-type:none;
+margin:5px;
+color:#DF3200;
+padding-bottom:3px;
+}
+
+li::before{
+content:' ✖ ';
+}
+ul{
+padding-bottom:15px;
+}
+header {
+font-size:20px;
+text-align:center;
+padding:6px;
+font-weight:bold;
+color:navy;
+}
+form {
+margin:10px;
+background:rgba(100,078,28,0.2);
+border-radius:5px;
+box-shadow:2px 2px 2px grey;
+}
+input {margin-top:15px;
+padding:10px;
+border-radius:5px;
+border:3px solid #ccc;
+font-size:15px;
+background:#f1f1f1;
+}
+
+#pword{
+    text-align:left;
+    font-size:10px;
+    margin-left:15px;
+    color:navy;
+    background-color:rgba(0,0,0,0.1);
+    padding:5px;
+    border-radius:5px;
+}
+
+#pword:active{
+    font-size:9px;
+    color:teal;
+}
+</style>
+<body>
+<header>PASSWORD AUTHENTICATOR <br>
+<small>Designed by Inshan</small>
+
+</header>
+<b id="pword">Show/Hide Password</b>
+<form>
+    
+    
+<center>
+
+<input placeholder="password"  type="text" > 
+</center>
+
+<ul>
+<li>Length is more than four</li>
+<li>length does not exceed ten</li>
+<li>Contains a letter</li>
+<li>Contains a number</li>
+<li>Contains a special character</li>
+<li>No space/empty value found</li>
+</ul>
+</form>
+
+</body>
+
+<script type="text/javascript">
+window.onload=function() {
+
+var password=document.getElementsByTagName('input')[0];
+
+var btn=document.getElementsByTagName('input')[1];
+
+var form=document.querySelector('form');
+
+var l1=document.getElementsByTagName('li')[0];
+
+var l2=document.getElementsByTagName('li')[1];
+
+
+var l3=document.getElementsByTagName('li')[2];
+
+
+var l4=document.getElementsByTagName('li')[3];
+
+
+var l5=document.getElementsByTagName('li')[4];
+
+var l6=document.getElementsByTagName('li')[5];
+
+var lall=document.getElementsByTagName('li');
+
+var pword=document.getElementById("pword");
+
+
+password.oninput=function(event) {
+
+event.preventDefault()
+//no empty spaces !
+if(!password.value.match(/\s/g)){
+l6.className="success";
+}
+if(password.value.length==0 || password.value.match(/\s/g)){
+l6.classList.remove('success')
+}
+
+//5 is minimum
+if(password.value.length>=5){
+l1.className="success"
+}
+else{
+l1.classList.remove('success');
+}
+// 10 is maximum
+if(password.value.length<=11 && password.value.length>=5){
+l2.className="success"
+}
+else{
+l2.classList.remove('success');
+}
+//letters
+if(password.value.match( /[A-Z]/i)){
+l3.className="success";
+}
+else{
+l3.classList.remove('success')
+}
+//numbers
+if(password.value.match( /[0-9]/i)){
+l4.className="success";
+}
+else{
+l4.classList.remove('success')
+}
+//special characters
+if(password.value.match( /[%#?!@$&)]/i)){
+l5.className="success";
+}
+else{
+l5.classList.remove('success')
+}
+
+ for(k=0; k<lall.length; k++ ){ if( l1.className=="success" && l2.className=="success" && l3.className=="success" && l4.className=="success" && l5.className=="success" &&
+ l6.className=="success"){
+   return  alert(password.value+' accepted')
+ } }
+}
+pword.addEventListener("click",function(event) {
+if(password.type=='password' ){
+    password.type="text"
+    }
+  else{ 
+ password.type='password'
+      }
+
+})
+}
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</html>
